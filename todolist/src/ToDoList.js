@@ -18,21 +18,25 @@ class ToDoList extends Component {
                     <input ref={(a) => this._inputTask = a} placeholder="nom de la tâche" />
                     <button type="submit">créer</button>
                 </form>
+                <div className="tasks_list">
+                    <ul>
+
+                    </ul>
+                </div>
             </div>
         )
     }
 
     addTask(t) {
-        if (this._inputTask.value !== "")
-        {
+        if (this._inputTask.value !== "") {
             var newTask = {
-                text : this._inputTask.value
+                text: this._inputTask.value
             };
         }
 
         this.setState((prevstate) => {
             return {
-                items : prevstate.items.concat (newTask)
+                items: prevstate.items.concat(newTask)
             };
         });
 
