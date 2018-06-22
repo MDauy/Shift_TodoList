@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Task from '../components/Task'
+import { toggleTodo, addTodo } from "../actions/index";
 
 class ToDoList extends Component {
     constructor(props) {
@@ -14,34 +16,19 @@ class ToDoList extends Component {
     render() {
         return (
             <div className="todolist">
-                <form onSubmit={this.addTask}>
+                <form onSubmit={addTodo(this._inputTask.value)}>
                     <input ref={(a) => this._inputTask = a} placeholder="nom de la tâche" />
                     <button type="submit">créer</button>
                 </form>
                 <div className="tasks_list">
                     <ul>
-
+                        {props.todos.map(todo =>
+                            <Task title={todo.text} onClick={() => props.toggleTodo(todo.id)} />)}
                     </ul>
                 </div>
             </div>
         )
-    }
-
-    addTask(t) {
-        if (this._inputTask.value !== "") {
-            var newTask = {
-                text: this._inputTask.value
-            };
-        }
-
-        this.setState((prevstate) => {
-            return {
-                items: prevstate.items.concat(newTask)
-            };
-        });
-
-        this._inputTask.value = "";
-    }
+    }    
 }
 
 export default ToDoList;

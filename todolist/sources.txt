@@ -1,1 +1,3 @@
+https://www.valentinog.com/blog/react-redux-tutorial-beginners/#React_Redux_tutorial_Redux_store_methods
+
 https://egghead.io/lessons/react-redux-react-todo-list-example-adding-a-todo

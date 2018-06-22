@@ -8,13 +8,10 @@ class Task extends Component {
         }
     }
     render() {
-        <div className="task">
-            <button className="delete_button" onClick={() => {
-
-            }} />
+        <li className="task" onClick={props.onClick}>
             <span>{this.state.title}</span>
             <span>{this.state.due_date}</span>
-        </div>
+        </li>
     }
 }
 
