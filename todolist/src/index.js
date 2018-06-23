@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ToDoList from './actions/components/ToDoList';
-import registerServiceWorker from './registerServiceWorker';
+import ToDoList from './components/ToDoList';
+import registerServiceWorker from './registerServiceWorker'
+import {generalStore} from './store'
 
 
 
 ReactDOM.render(
-    <div>
+    
+    <Provider store={generalStore}>
     <ToDoList />
-    </div>, document.getElementById('root'));
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();

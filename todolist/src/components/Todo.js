@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {toggleTodo} from '../actions/index'
 
 const mapStateToProps = state => {
     return {
@@ -15,23 +16,26 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-class ConnectdTask extends Component {
+class ConnectdTodo extends Component {
     constructor() {
+        super ();
     }
     render() {
-        <li className="task" onClick={props.toggleTodo}>
-            <span>{text}</span>
-            <span> {completed ? 'Fait !' : 'A faire'} </span>
+        return (
+        <li className="task" onClick={this.props.toggleTodo}>
+            <span>{this.props.title}</span>
+            <span> {this.props.completed ? 'Fait !' : 'A faire'} </span>
         </li>
+        )
     }
 }
 
-const Task = connect(mapStateToProps, mapDispatchToProps)(ConnectdTask);
+const Todo = connect(mapStateToProps, mapDispatchToProps)(ConnectdTodo);
 
-ConnectdTask.PropTypes = {
+ConnectdTodo.PropTypes = {
     text: PropTypes.string,
     completed: PropTypes.bool,
     toggleTodo: PropTypes.func.isRequired
 }
 
-export default Task;
+export default Todo;
