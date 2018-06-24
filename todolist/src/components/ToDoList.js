@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Todo from '../components/Todo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ const ConnectedToDoList = ({ todos }) => {
             <div className="tasks_list">
                 <ul>
                     {todos.map(todo =>
-                        <Todo title={todo.title} completed={todo.completed}/>)}
+                        <Todo title={todo.title} completed={todo.completed} id={todo.id}/>)}
                 </ul>
             </div>
         </div>

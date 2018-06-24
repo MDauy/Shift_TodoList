@@ -4,14 +4,15 @@ import './index.css';
 import ToDoList from './components/ToDoList';
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from "react-redux"
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import todoReducer from './reducers/todo'
-import sortFilterReducer from './reducers/sortFilter'
 
-const generalReducer = combineReducers({todo : todoReducer, sortFilter : sortFilterReducer});
 
-const store = createStore(todoReducer);
-
+const persistedState = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : undefined;
+const store = createStore(todoReducer, persistedState);
+store.subscribe (() =>{
+    localStorage.setItem('todos', JSON.stringify(store.getState()));
+});
 ReactDOM.render(
     <Provider store={store}>
        <ToDoList></ToDoList>

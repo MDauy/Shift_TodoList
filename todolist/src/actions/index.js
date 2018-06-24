@@ -1,25 +1,20 @@
-import { ADD_TODO, TOGGLE_TODO, SET_SORT_FILTER } from '../consts';
+import {CONSTS} from '../consts';
 
 export const addTodo = todo => ({
-    type:ADD_TODO,
-    payload : {
-        id : todo.id,
-        title : todo.title
+    type: CONSTS.ADD_TODO,
+    payload: {
+        id: todo.id,
+        title: todo.title
     }
 });
 
-export const setSortFilter = filter => ({
-    type : SET_SORT_FILTER,
-    filter
-})
-
 export const toggleTodo = id => ({
-    type:TOGGLE_TODO,
+    type: CONSTS.TOGGLE_TODO,
     id
 })
 
-export const SortFilters = {
-    SHOW_ALL : 'SHOW_ALL',
-    SHOW_COMPLETED : 'SHOW_COMPLETED',
-    SHOW_ACTIVE : 'SHOW_ACTIVE'
-}
+export const deleteTodo = id => (
+    {
+        type: CONSTS.DELETE_TODO,
+        id
+    })
