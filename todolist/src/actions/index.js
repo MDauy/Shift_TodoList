@@ -1,6 +1,5 @@
 import { ADD_TODO, TOGGLE_TODO, SET_SORT_FILTER } from '../consts';
 
-let nextTodoId = 0;
 export const addTodo = todo => ({
     type:ADD_TODO,
     payload : {

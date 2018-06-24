@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 import React, {Component} from 'react'
 import {addTodo} from '../actions/index'
-
 import uuidv1 from 'uuid'
 
 
 const mapDispatchToProps = dispatch => {
-    addTodo: todo => dispatch(addTodo(todo))
+    return {
+    addTodo: todo => dispatch(addTodo(todo))}
 }
 
 class ConnectedForm extends Component {
     constructor() {
         super ();
         this.state = {
-            title: '',
+            title : ""
         }
 
         this.onChange = this.onChange.bind(this);
@@ -22,8 +22,7 @@ class ConnectedForm extends Component {
 
 
     onChange(event) {
-        event.preventDefault();
-        this.setState((prevState) => {
+        this.setState({
             title: event.target.value
         });
     }
@@ -33,24 +32,24 @@ class ConnectedForm extends Component {
         const { title } = this.state;
         const id  = uuidv1();
         this.props.addTodo({ title, id });
-        this.setState({title : ''});
+        this.setState({title : ""});
     }
 
 
     render() {
-        const { title } = this.state;
+        const  title  = this.state.title;
         return (
-            <form>
+            <form onSubmit={this.onSubmit} >
                 <input type='text' onChange={this.onChange}
                     value={title} />
-                <input type='submit' onSubmit={this.onSubmit}>
-                    Créer
-                </input>
+                <button type='submit' >
+                Créer
+                </button>
             </form >
         );
     }
 }
 
-const Form = connect (ConnectedForm, mapDispatchToProps);
+const Form = connect (null,mapDispatchToProps)(ConnectedForm);
 
 export default Form;

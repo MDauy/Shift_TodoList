@@ -1,38 +1,32 @@
 import React, { Component } from "react";
 import Todo from '../components/Todo'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Form from './Form'
 
 const mapStateToProps = state => {
-    todos: state.todos
+    return { todos: state.todos }
 }
 
-class ConnectedToDoList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div>
-                <Form />
-                <div className="todolist">
-                    <div className="tasks_list">
-                        <ul>
-                            {this.props.todos.map(todo =>
-                                <Todo text={todo.title} />)}
-                        </ul>
-                    </div>
-                </div>
+const ConnectedToDoList = ({ todos }) => {
+    return (
+    <div>
+        <Form></Form>
+        <div className="todolist">
+            <div className="tasks_list">
+                <ul>
+                    {todos.map(todo =>
+                        <Todo title={todo.title} completed={todo.completed}/>)}
+                </ul>
             </div>
-        )
-    }
-}
-
-const ToDoList = connect(mapStateToProps)(ConnectedToDoList)
+        </div>
+    </div>
+    )
+}   
 
 ConnectedToDoList.PropTypes = {
     todos: PropTypes.array
 }
+
+const ToDoList = connect(mapStateToProps)(ConnectedToDoList)
 export default ToDoList;

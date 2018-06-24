@@ -1,21 +1,26 @@
-const todo = (state = [], action) => {
+const initialState = {
+    todos: []
+}
+
+const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return {
                 ...state,
-                todos : state.todos.concat (
-                    {
+                todos: [...state.todos,
+                {
                     id: action.payload.id,
-                    text: action.payload.text,
-                    completed: false}
-                )
+                    title: action.payload.title,
+                    completed: false
+                }
+                ]
             }
         case 'TOGGLE_TODO':
-            return state.map(todo =>
+            return state.todos.map(todo =>
                 (todo.id === action.id) ? { ...todo, completed: !todo.completed } : todo)
         default:
             return state;
     }
 }
 
-export default todo;
+export default todoReducer;
